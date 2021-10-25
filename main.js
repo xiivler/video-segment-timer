@@ -1,4 +1,3 @@
-
 var video1 = document.getElementById('video1');
 var video2 = document.getElementById('video2');
 var source1 = document.createElement('source');

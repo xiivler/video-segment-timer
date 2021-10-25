@@ -6,7 +6,15 @@ var source2 = document.createElement('source');
 video1.appendChild(source1);
 video2.appendChild(source2);
 
+document.getElementById('browse').style.display = "none";
+
+//for testing
+//source1.setAttribute('src', 'https://video.twimg.com/dm_video/1452366978186821633/vid/1280x720/YFuM5KvsQsxVMKO58CrwW_d-dGhTxgcnXzWNGbeVsbY.mp4?tag=1');
+//source2.setAttribute('src', 'https://video.twimg.com/dm_video/1452366978186821633/vid/1280x720/YFuM5KvsQsxVMKO58CrwW_d-dGhTxgcnXzWNGbeVsbY.mp4?tag=1');
+
 var framerate = 30;
+
+document.getElementById('debug').innerHTML = 'not yet';
 
 setInterval(update, 100);
 
@@ -14,6 +22,22 @@ var currentStartTime = 0.5 / framerate;
 var currentEndTime = 0.5 / framerate;
 
 var cooldown = 0;
+
+var uploadVideo = function (event) {
+    var file = this.files[0];
+    loadVideo(URL.createObjectURL(file));
+  }
+
+document.getElementById('browse').addEventListener('change', uploadVideo, false);
+
+function loadVideo(url) {
+	source1.setAttribute('src', url);
+  source2.setAttribute('src', url);
+  video1.load();
+  video2.load();
+  currentStartTime = 0.5 / framerate;
+  currentEndTime = 0.5 / framerate;
+}
 
 function update () {
 	//document.getElementById('debug').innerHTML = currentStartTime + ", " + currentEndTime;
@@ -83,16 +107,10 @@ function calculate() {
   document.getElementById('msTime').value = msTime;
 }
 
-function loadVideo() {
-	video1.pause();
+function getVideoURL() {
   let url = document.getElementById('URL').value;
-  let srcUrl = url.replace('twitter.com', 'fxtwitter.com/dir')
-  source1.setAttribute('src', srcUrl);
-  source2.setAttribute('src', srcUrl);
-  video1.load();
-  video2.load();
-  currentStartTime = 0.5 / framerate;
-  currentEndTime = 0.5 / framerate;
+  let srcUrl = url.replace('twitter.com', 'fxtwitter.com/dir');
+  loadVideo(srcUrl);
 }
 
 //false for video 1, true for video 2
@@ -151,6 +169,17 @@ function changeFPS() {
   video2.currentTime = currentEndTime;
   cooldown = 5;
   calculate();
+}
+
+function changeVideoType() {
+	if (document.getElementById('useURL').checked) {
+  	document.getElementById('URLParagraph').style.display = "block";
+    document.getElementById('browse').style.display = "none";
+  }
+  else {
+  	document.getElementById('URLParagraph').style.display = "none";
+    document.getElementById('browse').style.display = "block";
+  }
 }
 
 window.addEventListener('keydown', function (evt) {

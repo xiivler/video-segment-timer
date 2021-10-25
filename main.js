@@ -14,8 +14,6 @@ document.getElementById('browse').style.display = "none";
 
 var framerate = 30;
 
-document.getElementById('debug').innerHTML = 'not yet';
-
 setInterval(update, 100);
 
 var currentStartTime = 0.5 / framerate;

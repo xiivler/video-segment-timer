@@ -16,11 +16,18 @@
       <p>Determines the time of a segment within a video in 30 FPS frames and in milliseconds.</p>
       <p>Supports Twitter videos, Discord attachments, and any other URL that leads directly to a video file.</p>
       
-      <h3>Video URL</h3>
+      <h3>Video</h3>
       <p>
-        <input type="text" id="URL" style='width:50%' onchange='loadVideo()' />
-        <button id="loadVideo" onclick="loadVideo()">Load Video</button>
+        <input type="radio" id="useURL" name = "videotype" checked onchange='changeVideoType()'>
+        <label for="useURL">URL</label><br>
+        <input type="radio" id="useDownload" name = "videotype" onchange='changeVideoType()'>
+        <label for="useDownload">Upload File</label>
       </p>
+      <p id="URLParagraph">
+        <input type="text" id="URL" style='width:50%' onchange='getVideoURL()' />
+        <button id="loadVideo" onclick="getVideoURL()">Load Video</button>
+      </p>
+        <input type="file" id="browse" accept="video/*" />
       
       <h3>Video Framerate</h3>
       <p>
@@ -33,7 +40,7 @@
       <div>
         <div class="left_column">
           <h3>Start Frame</h3>
-          <video id="video1" width="480" height="320" controls controlsList="nodownload"></video>
+          <video id="video1" width="480" height="270" controls controlsList="nodownload"></video>
           <p>
             <button id="-1f1" onclick="frameAdvance(false, -1)">-1f</button>
             <button id="+1f1" onclick="frameAdvance(false, 1)">+1f</button>
@@ -52,7 +59,7 @@
         </div>
         <div style="float:left; margins">
           <h3>End Frame</h3>
-          <video id="video2" width="480" height="320" controls controlsList="nodownload"></video>
+          <video id="video2" width="480" height="270" controls controlsList="nodownload"></video>
           <p>
             <button id="-1f2" onclick="frameAdvance(true, -1)">-1f</button>
             <button id="+1f2" onclick="frameAdvance(true, 1)">+1f</button>
@@ -89,9 +96,9 @@
     
       <h3>Keyboard Shortcuts</h3>
       <p><code>,</code> <code>.</code> Advance forward/backward 1 frame</p>
-      <p><code>shift</code> + <code>,</code> <code>.</code> Advance forward/backward 5 frames
+      <p><code>shift</code> + <code>,</code> <code>.</code> Advance forward/backward 5 frame</p>
       <p><code>⟷</code> Advance forward/backward 1 second</p>
-      <p><code>shift</code> + <code>⟷</code> Advance forward/backward 5 seconds
+      <p><code>shift</code> + <code>⟷</code> Advance forward/backward 5 seconds</p>
     </div>
     
     <script src="main.js"></script>

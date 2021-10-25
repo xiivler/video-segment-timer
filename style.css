@@ -1,0 +1,13 @@
+.main_div {
+  margin-bottom: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  max-width: 980px;
+}
+
+.left_column {
+  float: left;
+  padding-right: 20px;
+}

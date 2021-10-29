@@ -1,13 +1,3 @@
-console.log("2")
-var query = window.location.search.substring(1);
-var param = query.split("url=")[1];
-console.log(param);
-
-if (param !== undefined) {
-	document.getElementById('URL').value = param;
-  parseURL(param);
-}
-
 var video1 = document.getElementById('video1');
 var video2 = document.getElementById('video2');
 var source1 = document.createElement('source');
@@ -30,6 +20,16 @@ var currentStartTime = 0.5 / framerate;
 var currentEndTime = 0.5 / framerate;
 
 var cooldown = 0;
+
+console.log("2")
+var query = window.location.search.substring(1);
+var param = query.split("url=")[1];
+console.log(param);
+
+if (param !== undefined) {
+	document.getElementById('URL').value = param;
+  parseURL(param);
+}
 
 function getVideoURL() {
   parseURL(document.getElementById('URL').value);

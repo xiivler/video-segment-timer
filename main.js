@@ -1,3 +1,5 @@
+console.log("6")
+
 var video1 = document.getElementById('video1');
 var video2 = document.getElementById('video2');
 var source1 = document.createElement('source');
@@ -11,6 +13,8 @@ document.getElementById('browse').style.display = "none";
 //for testing
 //source1.setAttribute('src', 'https://video.twimg.com/dm_video/1452366978186821633/vid/1280x720/YFuM5KvsQsxVMKO58CrwW_d-dGhTxgcnXzWNGbeVsbY.mp4?tag=1');
 //source2.setAttribute('src', 'https://video.twimg.com/dm_video/1452366978186821633/vid/1280x720/YFuM5KvsQsxVMKO58CrwW_d-dGhTxgcnXzWNGbeVsbY.mp4?tag=1');
+
+document.getElementById('60frameTimeParagraph').style.display = "none";
 
 var framerate = 60;
 
@@ -209,7 +213,6 @@ window.addEventListener('keydown', function (evt) {
     	secondAdvance(isVideo2, 1) 
 });
 
-console.log("5")
 var query = window.location.search.substring(1);
 var param = query.split("url=")[1];
 console.log(param);

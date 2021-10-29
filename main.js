@@ -1,11 +1,11 @@
-console.log("version with param passing");
+console.log("2")
 var query = window.location.search.substring(1);
 var param = query.split("url=")[1];
 console.log(param);
 
 if (param !== undefined) {
-  document.getElementById('URL').value = param;
-  getVideoUrl();
+	document.getElementById('URL').value = param;
+  parseURL(param);
 }
 
 var video1 = document.getElementById('video1');
@@ -30,6 +30,15 @@ var currentStartTime = 0.5 / framerate;
 var currentEndTime = 0.5 / framerate;
 
 var cooldown = 0;
+
+function getVideoURL() {
+  parseURL(document.getElementById('URL').value);
+}
+
+function parseURL(url) {
+	let srcUrl = url.replace('twitter.com', 'fxtwitter.com/dir');
+  loadVideo(srcUrl);
+}
 
 var uploadVideo = function (event) {
     var file = this.files[0];
@@ -113,12 +122,6 @@ function calculate() {
   
   let msTime = String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0') + '.' + String(milliseconds).padStart(3, '0');
   document.getElementById('msTime').value = msTime;
-}
-
-function getVideoURL() {
-  let url = document.getElementById('URL').value;
-  let srcUrl = url.replace('twitter.com', 'fxtwitter.com/dir');
-  loadVideo(srcUrl);
 }
 
 //false for video 1, true for video 2

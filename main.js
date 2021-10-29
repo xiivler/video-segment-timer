@@ -3,8 +3,10 @@ var query = window.location.search.substring(1);
 var param = query.split("url=")[1];
 console.log(param);
 
-if (param !== undefined)
-	document.getElementById('URL').value = param;
+if (param !== undefined) {
+  document.getElementById('URL').value = param;
+  getVideoUrl();
+}
 
 var video1 = document.getElementById('video1');
 var video2 = document.getElementById('video2');

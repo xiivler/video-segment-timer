@@ -209,7 +209,7 @@ window.addEventListener('keydown', function (evt) {
     	secondAdvance(isVideo2, 1) 
 });
 
-console.log("4")
+console.log("5")
 var query = window.location.search.substring(1);
 var param = query.split("url=")[1];
 console.log(param);

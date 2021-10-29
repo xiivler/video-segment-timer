@@ -12,7 +12,7 @@ document.getElementById('browse').style.display = "none";
 //source1.setAttribute('src', 'https://video.twimg.com/dm_video/1452366978186821633/vid/1280x720/YFuM5KvsQsxVMKO58CrwW_d-dGhTxgcnXzWNGbeVsbY.mp4?tag=1');
 //source2.setAttribute('src', 'https://video.twimg.com/dm_video/1452366978186821633/vid/1280x720/YFuM5KvsQsxVMKO58CrwW_d-dGhTxgcnXzWNGbeVsbY.mp4?tag=1');
 
-var framerate = 30;
+var framerate = 60;
 
 setInterval(update, 100);
 

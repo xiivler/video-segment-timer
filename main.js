@@ -21,14 +21,14 @@ var currentEndTime = 0.5 / framerate;
 
 var cooldown = 0;
 
-console.log("2")
+console.log("3")
 var query = window.location.search.substring(1);
 var param = query.split("url=")[1];
 console.log(param);
 
 if (param !== undefined) {
 	document.getElementById('URL').value = param;
-  parseURL(param);
+  setTimeout(function(){parseURL(param)}, 2000);
 }
 
 function getVideoURL() {

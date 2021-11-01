@@ -1,5 +1,5 @@
 //Initialization
-console.log("12")
+console.log("13")
 
 const FILE = 0;
 const YOUTUBE = 1;
@@ -434,7 +434,7 @@ function twitch_setStartToEnd() {
 function twitch_setEndToStart() {
   currentEndTime = currentStartTime;
   twitch_player2.seek(currentEndTime);
-  player2SeekCalls++;
+  //player2SeekCalls++;
   calculate();
 }
 

@@ -1,5 +1,5 @@
 //Initialization
-console.log("10")
+console.log("11")
 
 const FILE = 0;
 const YOUTUBE = 1;
@@ -327,7 +327,8 @@ function secondAdvance(isPlayer2, seconds) {
 
 function file_secondAdvance(isPlayer2, seconds) {
   if (isPlayer2) {
-    currentEndTime = file_player2.currentTime;
+    if (!file_player2.paused)
+    	currentEndTime = file_player2.currentTime;
     currentEndTime += seconds;
     if (currentEndTime < 0)
     	currentEndTime = 0.5 / framerate;
@@ -337,7 +338,8 @@ function file_secondAdvance(isPlayer2, seconds) {
     player2SeekCalls++;
   }
   else {
-    currentStartTime = file_player1.currentTime;
+    if (!file_player1.paused)
+    	currentStartTime = file_player1.currentTime;
     currentStartTime += seconds;
     if (currentStartTime < 0)
     	currentStartTime = 0.5 / framerate;

@@ -427,12 +427,14 @@ function yt_setStartToEnd() {
 function twitch_setStartToEnd() {
   currentStartTime = currentEndTime;
   twitch_player1.seek(currentStartTime);
+  player1SeekCalls++;
   calculate();
 }
 
 function twitch_setEndToStart() {
   currentEndTime = currentStartTime;
   twitch_player2.seek(currentEndTime);
+  player2SeekCalls++;
   calculate();
 }
 

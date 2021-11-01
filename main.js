@@ -144,8 +144,8 @@ function file_loadVideo(url) {
 }
 
 function yt_loadVideo(url) {
-  let regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  let regExpTime = /(?<=\?t=|\&t=)([0-9]+)/;
+  let regExp = /(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*)/;
+  let regExpTime = /(\?|\&)t=([0-9]+)/;
   let match = url.match(regExp);
   if (match && match[2].length == 11) {
 	let start = 0;

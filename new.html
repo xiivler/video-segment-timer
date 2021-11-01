@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="version" content="1.2">
+    <title>VidTimer</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body class = "stackedit">
+    <div class = "main_div">
+      <h1>VidTimer</h1>
+      <h4>by Xiivler</h4>
+      <p>Determines the time between two points in a video in frames and in milliseconds.</p>
+      <p>Supports YouTube videos, Twitch VODs, Twitter videos, URLs that lead directly to a video file (ex. Discord attachments), and uploaded files.</p>
+      
+      <h3>Video</h3>
+      <p>
+        <input type="radio" id="useURL" name = "videotype" checked onchange='changeVideoType()'>
+        <label for="useURL">URL</label><br>
+        <input type="radio" id="useDownload" name = "videotype" onchange='changeVideoType()'>
+        <label for="useDownload">Upload File</label>
+      </p>
+      <p id="URLParagraph">
+        <input type="text" id="URL" style='width:50%' onchange='getVideoURL()'>
+        <button id="loadVideo" onclick="getVideoURL()">Load Video</button>
+      </p>
+        <input type="file" id="browse" accept="video/*">
+      
+      <h3>Video Framerate</h3>
+      <p>
+        <input type="radio" id="30FPS" name = "FPS" onchange='changeFPS()'>
+        <label for="30FPS">30 FPS</label><br>
+        <input type="radio" id="60FPS" name = "FPS" checked onchange='changeFPS()'>
+        <label for="60FPS">60 FPS</label>
+      </p>
+      
+      <div>
+        <div class="left_column">
+          <h3>Start Frame</h3>
+          <video id="file_player1" width="480" height="270" controls controlsList="nodownload"></video>
+          <iFrame id = "yt_player1" width = 410 height = 340 src="https://www.youtube.com/embed/?enablejsapi=1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iFrame>
+          <div id="twitch_player1"></div>
+        <p>
+          <p>
+            <button id="-1f1" onclick="frameAdvance(false, -1)">-1f</button>
+            <button id="+1f1" onclick="frameAdvance(false, 1)">+1f</button>
+            &emsp;
+            <button id="-10f1" onclick="frameAdvance(false, -5)">-5f</button>
+            <button id="+10f1" onclick="frameAdvance(false, 5)">+5f</button>
+            &emsp;
+            <button id="-1s1" onclick="secondAdvance(false, -1)">-1s</button>
+            <button id="+1s1" onclick="secondAdvance(false, 1)">+1s</button>
+            &emsp;
+            <button id="-5s1" onclick="secondAdvance(false, -5)">-5s</button>
+            <button id="+5s1" onclick="secondAdvance(false, 5)">+5s</button>
+          </p>
+          <p><input type="text" id="startFrameTime" style='width:40' readonly></p>
+          <p><button id="sync" onclick="setStartToEnd()">Set to Current End Frame</button></p>
+        </div>
+        <div style="float:left; margins">
+          <h3>End Frame</h3>
+          <video id="file_player2" width="480" height="270" controls controlsList="nodownload"></video>
+          <iFrame id = "yt_player2" width = 410 height = 340 src="https://www.youtube.com/embed/?enablejsapi=1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iFrame>
+          <div id="twitch_player2"></div>
+        <p>
+          <p>
+            <button id="-1f2" onclick="frameAdvance(true, -1)">-1f</button>
+            <button id="+1f2" onclick="frameAdvance(true, 1)">+1f</button>
+            &emsp;
+            <button id="-10f2" onclick="frameAdvance(true, -5)">-5f</button>
+            <button id="+10f2" onclick="frameAdvance(true, 5)">+5f</button>
+            &emsp;
+            <button id="-1s2" onclick="secondAdvance(true, -1)">-1s</button>
+            <button id="+1s2" onclick="secondAdvance(true, 1)">+1s</button>
+            &emsp;
+            <button id="-5s2" onclick="secondAdvance(true, -5)">-5s</button>
+            <button id="+5s2" onclick="secondAdvance(true, 5)">+5s</button>
+          </p>
+          <p><input type="text" id="endFrameTime" style='width:40' readonly></p>
+        </div>
+        <div style="clear:both;"></div>
+<p id ="debug"></p>
+    </div>
+    
+      <h3>Segment Time</h3>
+      <p>
+        <label id="FPSLabel" for="frameTime"><code>60 FPS (ss:ff)</code> </label>
+        <input type="text" id="frameTime" style='width:40' readonly>
+      </p>
+      <p id="60frameTimeParagraph">
+        <label id="60FPSLabel" for="frameTime60FPS"><code>60 FPS (ss:ff)</code> </label>
+        <input type="text" id="frameTime60FPS" style='width:40' readonly>
+      </p>
+      <p>
+        <label for="msTime"><code>(hh:mm:ss.ms)</code> </label>
+        <input type="text" id="msTime" style='width:40' readonly>
+      </p>
+      <br>
+      
+      <div id="file_info">
+        <h3>Keyboard Shortcuts</h3>
+        <p><code>,</code> <code>.</code> Advance forward/backward 1 frame</p>
+        <p><code>shift</code> + <code>,</code> <code>.</code> Advance forward/backward 5 frame</p>
+        <p><code>⟷</code> Advance forward/backward 1 second</p>
+        <p><code>shift</code> + <code>⟷</code> Advance forward/backward 5 seconds</p>
+       
+        <h3>Known Twitter Clip Issue</h3>
+        <p>
+        For some time when you first use the site, some Twitter clips may not load properly. Please be patient and keep reloading, as after some time the clips should load normally.
+        </p>
+      </div>
+      
+      <div id="yt_info">
+        <h3>Keyboard Shortcuts</h3>
+        <p><code>,</code> <code>.</code> Advance forward/backward 1 frame by the video's actual framerate</p>
+        <p><code>⟷</code> Advance forward/backward 5 seconds</p>
+      </div>
+    
+    <div id="twitch_info">
+        <h3>Inaccuracies in Timing</h3>
+        <p> Twitch stores its videos in shorter segments and stitches them together to form the video you see playing. As a result of this, any timing on Twitch can be <b>up to 2 frames faster or slower</b> than VidTimer displays (±0.033 seconds in 60 FPS). Still, the timer might be sufficient for your use. For example, if you are timing to the second in 60 FPS, this timer is sufficient for all videos in which the number of frames are not 58, 59, 00, 01, or 02, so you can use it 11/12 of the time. </p>
+        
+        <h3>Removing the Pause Overlay</h3>
+        <p> For the best timing experience, it is recommended that you use an ad blocker to remove some elements from the Twitch player embed, namely the large play button that appears when you pause. A simple way to do this is to download <a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm">uBlock Origin</a> or <a href="https://chrome.google.com/webstore/detail/adblock-plus-free-ad-bloc/cfhdojbkjhnklbpkdaibdccddilifddb">Adblock Plus</a>. For uBlock Origin, navigate to the <a href="chrome-extension://cjpalhdlnbpafiamejdnhcphjbkeiagm/dashboard.html#1p-filters.html">My filters</a> page of the settings, copy and paste the filters listed below, and click <code>Apply changes</code>. For Adblock Plus, open the <a href="chrome-extension://cfhdojbkjhnklbpkdaibdccddilifddb/desktop-options.html#advanced">Advanced</a> tab of the settings, and copy and paste the filters listed below into the <code>My Filter List</code> text box.</p>
+        <p>
+        <code>player.twitch.tv##.tw-interactable.UsOVa.dgcGVJ.ScInteractableOverlay-sc-awmohi-2.ScInteractableBase-sc-awmohi-0 > .tw-svg.eHOmkT.ScFigure-sc-1j5mt50-0 > .kMNUwy.ScSvg-sc-1j5mt50-1 path<br>
+player.twitch.tv##.player-overlay-background--darkness-5.player-overlay-background.krOuYh.Layout-sc-nxg1ff-0<br>
+player.twitch.tv##.tw-root--hover.tw-root--theme-dark.jLsLts.Layout-sc-nxg1ff-0<br>
+player.twitch.tv##.stream-info-social-panel.kQdsMV.Layout-sc-nxg1ff-0</code>
+        </p>
+      </div>
+    </div>
+    
+    <script src="main.js"></script>
+    <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+  </body>
+</html>

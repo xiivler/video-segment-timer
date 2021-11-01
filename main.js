@@ -109,9 +109,13 @@ function file_loadVideo(url) {
   player1SeekCalls = 0;
   player2SeekCalls = 0;
   
-  if (mode != FILE) {
-    clearInterval(file_updateInterval);
+  clearInterval(file_updateInterval);
+  file_updateInterval = setInterval(function() {
+		if (currentEndTime < currentStartTime)
+			file_setEndToStart();
+	  }, 500);
     
+  if (mode != FILE) {  
     document.getElementById('file_player1').style.display = "block";
 	  document.getElementById('file_player2').style.display = "block";
     document.getElementById('file_info').style.display = "block";
@@ -133,11 +137,6 @@ function file_loadVideo(url) {
 		twitch_player1.setVideo();
 		twitch_player2.setVideo();
 	}
-	
-	file_updateInterval = setInterval(function() {
-		if (currentEndTime < currentStartTime)
-			file_setEndToStart();
-	  }, 500);
 	
     mode = FILE;
     }

@@ -6,4 +6,6 @@ Supports Twitter videos, Discord attachments, other URLs that lead directly to a
 
 Uses robinuniverse's [TwitFix](https://github.com/robinuniverse/TwitFix) to get the URL for Twitter video sources.
 
-Favicon by Lukasz Adam
+Credit to [LosManos](https://github.com/LosManos), Lasnv, and [jeffreypriebe](https://github.com/jeffreypriebe) for code for parsing YouTube URLs.
+
+Favicon by Lukasz Adam.

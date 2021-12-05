@@ -149,7 +149,7 @@ function yt_loadVideo(url) {
         let start = 0;
         let timeData = url.match(regExpTime);
         if (timeData)
-            start = parseInt(timeData[0]) + 0.5 / framerate;
+            start = parseInt(timeData[2]) + 0.5 / framerate;
         if (start < 0.5 / framerate)
             start = 0.5 / framerate;
         yt_player1.cueVideoById(match[2], start);

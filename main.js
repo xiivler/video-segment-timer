@@ -85,7 +85,7 @@ function parseURL(url) {
     else if (url.match("twitch.tv\/video"))
         twitch_loadVideo(url);
     else {
-        let srcUrl = url.replace('twitter.com', 'fxtwitter.com/dir');
+        let srcUrl = url.replace('twitter.com', 'vxtwitter.com/dir');
         file_loadVideo(srcUrl);
     }
 }

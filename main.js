@@ -1,11 +1,15 @@
 //Initialization
-console.log("17")
+console.log("18")
 
 const FILE = 0;
 const YOUTUBE = 1;
 const TWITCH = 2;
 
 var mode = FILE;
+
+var isDriveVideo = false;
+var driveID = "";
+var driveUser = 0;
 
 var framerate = 60;
 
@@ -27,11 +31,6 @@ document.getElementById('twitch_info').style.display = "none";
 //initialize for file mode
 var file_player1 = document.getElementById('file_player1');
 var file_player2 = document.getElementById('file_player2');
-var file_source1 = document.createElement('source');
-var file_source2 = document.createElement('source');
-
-file_player1.appendChild(file_source1);
-file_player2.appendChild(file_source2);
 
 var file_updateInterval;
 
@@ -80,17 +79,28 @@ function getVideoURL() {
 }
 
 function parseURL(url) {
+    isDriveVideo = false;
+    driveID = "";
+    driveUser = 0;
     if (url.match("youtube\.com|youtu\.be"))
         yt_loadVideo(url);
     else if (url.match("twitch.tv\/video"))
         twitch_loadVideo(url);
     else {
         let srcUrl = url.replace('twitter.com', 'vxtwitter.com/dir');
+        let regExp = /drive\.google\.com\/file\/d\/(.*)\//;
+    		let match = srcUrl.match(regExp);
+    		if (match) {
+          driveID = match[1];
+    			srcUrl = "https://drive.google.com/uc?export=download&id=" + driveID;
+          isDriveVideo = true;
+         }
         file_loadVideo(srcUrl);
     }
 }
 
 var uploadVideo = function(event) {
+    isDriveVideo = false;
     var file = this.files[0];
     file_loadVideo(URL.createObjectURL(file));
 }
@@ -98,10 +108,8 @@ var uploadVideo = function(event) {
 document.getElementById('browse').addEventListener('change', uploadVideo, false);
 
 function file_loadVideo(url) {
-    file_source1.setAttribute('src', url);
-    file_source2.setAttribute('src', url);
-    file_player1.load();
-    file_player2.load();
+    file_player1.setAttribute('src', url);
+    file_player2.setAttribute('src', url);
     currentStartTime = 0.5 / framerate;
     currentEndTime = 0.5 / framerate;
     calculate();
@@ -141,6 +149,21 @@ function file_loadVideo(url) {
     }
 }
 
+function onFileLoadError() {
+  //console.log("error!");
+  if (isDriveVideo) {
+    //console.log("error loading drive video");
+    if (driveUser < 9) {
+      driveUser++;
+      let srcUrl = "https://drive.google.com/u/" + driveUser + "/uc?export=download&id=" + driveID;
+      file_player1.setAttribute('src', srcUrl);
+      file_player2.setAttribute('src', srcUrl);
+    }
+  }
+}
+
+file_player1.onerror = onFileLoadError;
+
 function yt_loadVideo(url) {
     let regExp = /(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*)/;
     let regExpTime = /(\?|\&)t=([0-9]+)/;
@@ -169,10 +192,8 @@ function yt_loadVideo(url) {
                 document.getElementById('file_player1').style.display = "none";
                 document.getElementById('file_player2').style.display = "none";
                 document.getElementById('file_info').style.display = "none";
-                file_source1.setAttribute('src', "");
-                file_source2.setAttribute('src', "");
-                file_player1.load();
-                file_player2.load();
+                file_player1.setAttribute('src', "");
+                file_player2.setAttribute('src', "");
                 clearInterval(file_updateInterval);
             } else if (mode == TWITCH) {
                 //document.getElementById('FPSLabel').innerHTML = "<code>" + framerate + " FPS (ss:ff)</code>";
@@ -228,10 +249,8 @@ function twitch_loadVideo(url) {
             document.getElementById('file_player1').style.display = "none";
             document.getElementById('file_player2').style.display = "none";
             document.getElementById('file_info').style.display = "none";
-            file_source1.setAttribute('src', "");
-            file_source2.setAttribute('src', "");
-            file_player1.load();
-            file_player2.load();
+            file_player1.setAttribute('src', "");
+            file_player2.setAttribute('src', "");
             clearInterval(file_updateInterval);
         } else if (mode == YOUTUBE) {
             document.getElementById('yt_player1').style.display = "none";

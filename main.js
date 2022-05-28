@@ -1,5 +1,5 @@
 //Initialization
-console.log("22")
+console.log("23")
 
 const FILE = 0;
 const YOUTUBE = 1;
@@ -11,6 +11,7 @@ var isDriveVideo = false;
 var driveID = "";
 var driveUser = 0;
 const driveAPIKey = "AIzaSyCv76of8z_m0jnOflw0rFQ50gphUBFvwcw";
+const maxDriveUsers = 4;
 
 var framerate = 60;
 
@@ -156,7 +157,7 @@ function onFileLoadError() {
   //console.log("error!");
   if (isDriveVideo) {
     //console.log("error loading drive video");
-    if (driveUser < 9) {
+    if (driveUser < maxDriveUsers - 1) {
       driveUser++;
       let srcUrl = "https://drive.google.com/u/" + driveUser + "/uc?export=download&id=" + driveID;
       file_player1.setAttribute('src', srcUrl);
@@ -164,14 +165,14 @@ function onFileLoadError() {
       file_player1.load();
       file_player2.load();
     }
-    else if (driveUser == 9) {
+    else if (driveUser == maxDriveUsers - 1) {
       //unless there are more than 10 users, the file is large
       let srcUrl = "https://www.googleapis.com/drive/v3/files/" + driveID + "?alt=media&key=" + driveAPIKey;
       file_player1.setAttribute('src', srcUrl);
       file_player2.setAttribute('src', srcUrl);
       file_player1.load();
       file_player2.load();
-      driveUser = 10;
+      driveUser = maxDriveUsers;
     }
   }
 }

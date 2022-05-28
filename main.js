@@ -1,5 +1,5 @@
 //Initialization
-console.log("21")
+console.log("22")
 
 const FILE = 0;
 const YOUTUBE = 1;
@@ -171,6 +171,7 @@ function onFileLoadError() {
       file_player2.setAttribute('src', srcUrl);
       file_player1.load();
       file_player2.load();
+      driveUser = 10;
     }
   }
 }

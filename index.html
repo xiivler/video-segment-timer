@@ -56,15 +56,18 @@
           <p>
             <button id="-1f1" onclick="frameAdvance(false, -1)">-1f</button>
             <button id="+1f1" onclick="frameAdvance(false, 1)">+1f</button>
-            &emsp;
-            <button id="-10f1" onclick="frameAdvance(false, -5)">-5f</button>
-            <button id="+10f1" onclick="frameAdvance(false, 5)">+5f</button>
+            &thinsp;
+            <button id="-5f1" onclick="frameAdvance(false, -5)">-5f</button>
+            <button id="+5f1" onclick="frameAdvance(false, 5)">+5f</button>
             &emsp;
             <button id="-1s1" onclick="secondAdvance(false, -1)">-1s</button>
             <button id="+1s1" onclick="secondAdvance(false, 1)">+1s</button>
-            &emsp;
+            &thinsp;
             <button id="-5s1" onclick="secondAdvance(false, -5)">-5s</button>
             <button id="+5s1" onclick="secondAdvance(false, 5)">+5s</button>
+            &emsp;
+            <button id="-1m2" onclick="secondAdvance(false, -60)">-1m</button>
+            <button id="+1m2" onclick="secondAdvance(false, 60)">+1m</button>
           </p>
           <p><input type="text" id="startFrameTime" style='width:40' readonly></p>
           <p><button id="sync" onclick="setStartToEnd()">Set to Current End Frame</button></p>
@@ -78,15 +81,18 @@
           <p>
             <button id="-1f2" onclick="frameAdvance(true, -1)">-1f</button>
             <button id="+1f2" onclick="frameAdvance(true, 1)">+1f</button>
-            &emsp;
-            <button id="-10f2" onclick="frameAdvance(true, -5)">-5f</button>
-            <button id="+10f2" onclick="frameAdvance(true, 5)">+5f</button>
+            &thinsp;
+            <button id="-5f2" onclick="frameAdvance(true, -5)">-5f</button>
+            <button id="+5f2" onclick="frameAdvance(true, 5)">+5f</button>
             &emsp;
             <button id="-1s2" onclick="secondAdvance(true, -1)">-1s</button>
             <button id="+1s2" onclick="secondAdvance(true, 1)">+1s</button>
-            &emsp;
+            &thinsp;
             <button id="-5s2" onclick="secondAdvance(true, -5)">-5s</button>
             <button id="+5s2" onclick="secondAdvance(true, 5)">+5s</button>
+            &emsp;
+            <button id="-1m2" onclick="secondAdvance(true, -60)">-1m</button>
+            <button id="+1m2" onclick="secondAdvance(true, 60)">+1m</button>
           </p>
           <p><input type="text" id="endFrameTime" style='width:40' readonly></p>
         </div>

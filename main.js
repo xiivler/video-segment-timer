@@ -1,5 +1,5 @@
 //Initialization
-console.log("24")
+console.log("25")
 
 const FILE = 0;
 const YOUTUBE = 1;
@@ -89,7 +89,7 @@ function parseURL(url) {
     else if (url.match("twitch.tv\/video"))
         twitch_loadVideo(url);
     else {
-        let srcUrl = url.replace('twitter.com', 'vxtwitter.com/dir');
+        let srcUrl = url.replace('twitter.com', 'fxtwitter.com/dir');
         let regExp = /drive\.google\.com\/file\/d\/(.*)\//;
     		let match = srcUrl.match(regExp);
     		if (match) {

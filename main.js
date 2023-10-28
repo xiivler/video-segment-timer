@@ -90,6 +90,7 @@ function parseURL(url) {
         twitch_loadVideo(url);
     else {
         let srcUrl = url.replace('twitter.com', 'fxtwitter.com/dir');
+        srcUrl = srcUrl.replace('x.com', 'fxtwitter.com/dir');
         let regExp = /drive\.google\.com\/file\/d\/(.*)\//;
     		let match = srcUrl.match(regExp);
     		if (match) {

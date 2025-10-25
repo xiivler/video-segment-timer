@@ -89,8 +89,8 @@ function parseURL(url) {
     else if (url.match("twitch.tv\/video"))
         twitch_loadVideo(url);
     else {
-        let url2 = url.replace('twitter.com', 'fxtwitter.com/dir');
-        let srcUrl = url2.replace('x.com', 'fxtwitter.com/dir');
+        let url2 = url.replace('twitter.com', 'd.fxtwitter.com');
+        let srcUrl = url2.replace('x.com', 'd.fxtwitter.com');
         let regExp = /drive\.google\.com\/file\/d\/(.*)\//;
     		let match = srcUrl.match(regExp);
     		if (match) {

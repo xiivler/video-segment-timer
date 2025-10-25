@@ -22,7 +22,7 @@
       <h1>VidTimer</h1>
       <h4>by Xiivler</h4>
       <p>Determines the time between two points in a video in frames and in milliseconds.</p>
-      <p>Supports YouTube videos, Twitch VODs, Twitter videos, Google Drive videos, URLs that lead directly to a video file (ex. Discord attachments), and uploaded files.</p>
+      <p>Supports YouTube videos, Twitch VODs, X videos, Google Drive videos, URLs that lead directly to a video file (ex. Discord attachments), and uploaded files.</p>
       <p>Also supports Twitch clips if you install the Twitch Clip Timer <a href="https://chrome.google.com/webstore/detail/twitch-clip-timer/fdlhmdcegamkfdokpcbhcaeefihnpaeg">Chrome extension</a> or <a href="https://addons.mozilla.org/firefox/addon/twitch-clip-timer/">Firefox add-on</a>.</p>
       
       <h3>Video</h3>
@@ -138,17 +138,8 @@
       </div>
     
     <div id="twitch_info">
-        <h3>Inaccuracies in Timing</h3>
+        <h3>Inaccuracies in Twitch Video Timing</h3>
         <p> Twitch stores its videos in shorter segments and stitches them together to form the video you see playing. As a result of this, any timing on Twitch can be <b>up to 2 frames faster or slower</b> than VidTimer displays (±0.033 seconds in 60 FPS). Still, the timer might be sufficient for your use. For example, if you are timing to the second in 60 FPS, this timer is sufficient for all videos in which the number of frames are not 58, 59, 00, 01, or 02, so you can use it 11/12 of the time. </p>
-        
-        <h3>Removing the Pause Overlay</h3>
-        <p> For the best timing experience, it is recommended that you use an ad blocker to remove some elements from the Twitch player embed, namely the large play button that appears when you pause. A simple way to do this is to download <a href="https://ublockorigin.com/">uBlock Origin</a> or <a href="https://adblockplus.org/">Adblock Plus</a>. For uBlock Origin, navigate to the <code>My filters</code> page of the settings, copy and paste the filters listed below, and click <code>Apply changes</code>. For Adblock Plus, open the <code>Advanced</code> tab of the settings, and copy and paste the filters listed below into the <code>My Filter List</code> text box.</p>
-        <p>
-        <code>player.twitch.tv##.tw-interactable.UsOVa.dgcGVJ.ScInteractableOverlay-sc-awmohi-2.ScInteractableBase-sc-awmohi-0 > .tw-svg.eHOmkT.ScFigure-sc-1j5mt50-0 > .kMNUwy.ScSvg-sc-1j5mt50-1 path<br>
-player.twitch.tv##.player-overlay-background--darkness-5.player-overlay-background.krOuYh.Layout-sc-nxg1ff-0<br>
-player.twitch.tv##.tw-root--hover.tw-root--theme-dark.jLsLts.Layout-sc-nxg1ff-0<br>
-player.twitch.tv##.stream-info-social-panel.kQdsMV.Layout-sc-nxg1ff-0</code>
-        </p>
       </div>
     </div>
     

@@ -1,5 +1,5 @@
 //Initialization
-console.log("29")
+console.log("30")
 
 const FILE = 0;
 const YOUTUBE = 1;
@@ -191,8 +191,8 @@ function yt_loadVideo(url) {
             start = parseInt(timeData[2]) + 0.5 / framerate;
         if (start < 0.5 / framerate)
             start = 0.5 / framerate;
-        yt_player1.cueVideoById(match[2], start);
-        yt_player2.cueVideoById(match[2], start);
+        yt_player1.loadVideoById(match[2], start);
+        yt_player2.loadVideoById(match[2], start);
         yt_newVideo = true;
         currentStartTime = start;
         currentEndTime = start;
